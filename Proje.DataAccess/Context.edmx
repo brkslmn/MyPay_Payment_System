@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MyPayModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="establishment">
+          <Key>
+            <PropertyRef Name="est_id" />
+          </Key>
+          <Property Name="est_id" Type="int" Nullable="false" />
+          <Property Name="est_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone_number" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="adress" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="website" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="payments">
+          <Key>
+            <PropertyRef Name="portfolio_id" />
+          </Key>
+          <Property Name="portfolio_id" Type="int" Nullable="false" />
+          <Property Name="establishment_id" Type="int" Nullable="false" />
+          <Property Name="establishment_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="customer_number" Type="int" Nullable="false" />
+          <Property Name="user_balance" Type="float" Nullable="false" />
+          <Property Name="payment_amount" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="portfolio">
+          <Key>
+            <PropertyRef Name="user_portfolio_id" />
+          </Key>
+          <Property Name="user_portfolio_id" Type="int" Nullable="false" />
+          <Property Name="number" Type="int" />
+          <Property Name="balance" Type="float" />
+          <Property Name="daily_income" Type="float" />
+          <Property Name="daily_expense" Type="float" />
+          <Property Name="non_cash_assest" Type="float" />
+          <Property Name="registered_debit_cards" Type="int" />
+        </EntityType>
+        <EntityType Name="user_debit_cards">
+          <Key>
+            <PropertyRef Name="card_id" />
+          </Key>
+          <Property Name="card_id" Type="int" Nullable="false" />
+          <Property Name="card_number" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone_number" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_payments_establishment">
+          <End Role="establishment" Type="Self.establishment" Multiplicity="1" />
+          <End Role="payments" Type="Self.payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="establishment">
+              <PropertyRef Name="est_id" />
+            </Principal>
+            <Dependent Role="payments">
+              <PropertyRef Name="establishment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_payments_portfolio">
+          <End Role="portfolio" Type="Self.portfolio" Multiplicity="1" />
+          <End Role="payments" Type="Self.payments" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="portfolio">
+              <PropertyRef Name="user_portfolio_id" />
+            </Principal>
+            <Dependent Role="payments">
+              <PropertyRef Name="portfolio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_portfolio_user_debit_cards">
+          <End Role="user_debit_cards" Type="Self.user_debit_cards" Multiplicity="0..1" />
+          <End Role="portfolio" Type="Self.portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_debit_cards">
+              <PropertyRef Name="card_id" />
+            </Principal>
+            <Dependent Role="portfolio">
+              <PropertyRef Name="registered_debit_cards" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_portfolio">
+          <End Role="portfolio" Type="Self.portfolio" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="portfolio">
+              <PropertyRef Name="user_portfolio_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyPayModelStoreContainer">
+          <EntitySet Name="establishment" EntityType="Self.establishment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payments" EntityType="Self.payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="portfolio" EntityType="Self.portfolio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_debit_cards" EntityType="Self.user_debit_cards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_payments_establishment" Association="Self.FK_payments_establishment">
+            <End Role="establishment" EntitySet="establishment" />
+            <End Role="payments" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_payments_portfolio" Association="Self.FK_payments_portfolio">
+            <End Role="portfolio" EntitySet="portfolio" />
+            <End Role="payments" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_portfolio_user_debit_cards" Association="Self.FK_portfolio_user_debit_cards">
+            <End Role="user_debit_cards" EntitySet="user_debit_cards" />
+            <End Role="portfolio" EntitySet="portfolio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_portfolio" Association="Self.FK_users_portfolio">
+            <End Role="portfolio" EntitySet="portfolio" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyPayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="establishment">
+          <Key>
+            <PropertyRef Name="est_id" />
+          </Key>
+          <Property Name="est_id" Type="Int32" Nullable="false" />
+          <Property Name="est_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="payments" Relationship="Self.FK_payments_establishment" FromRole="establishment" ToRole="payments" />
+        </EntityType>
+        <EntityType Name="payments">
+          <Key>
+            <PropertyRef Name="portfolio_id" />
+          </Key>
+          <Property Name="portfolio_id" Type="Int32" Nullable="false" />
+          <Property Name="establishment_id" Type="Int32" Nullable="false" />
+          <Property Name="establishment_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="customer_number" Type="Int32" Nullable="false" />
+          <Property Name="user_balance" Type="Double" Nullable="false" />
+          <Property Name="payment_amount" Type="Double" Nullable="false" />
+          <NavigationProperty Name="establishment" Relationship="Self.FK_payments_establishment" FromRole="payments" ToRole="establishment" />
+          <NavigationProperty Name="portfolio" Relationship="Self.FK_payments_portfolio" FromRole="payments" ToRole="portfolio" />
+        </EntityType>
+        <EntityType Name="portfolio">
+          <Key>
+            <PropertyRef Name="user_portfolio_id" />
+          </Key>
+          <Property Name="user_portfolio_id" Type="Int32" Nullable="false" />
+          <Property Name="number" Type="Int32" />
+          <Property Name="balance" Type="Double" />
+          <Property Name="daily_income" Type="Double" />
+          <Property Name="daily_expense" Type="Double" />
+          <Property Name="non_cash_assest" Type="Double" />
+          <Property Name="registered_debit_cards" Type="Int32" />
+          <NavigationProperty Name="payments" Relationship="Self.FK_payments_portfolio" FromRole="portfolio" ToRole="payments" />
+          <NavigationProperty Name="user_debit_cards" Relationship="Self.FK_portfolio_user_debit_cards" FromRole="portfolio" ToRole="user_debit_cards" />
+          <NavigationProperty Name="users" Relationship="Self.FK_users_portfolio" FromRole="portfolio" ToRole="users" />
+        </EntityType>
+        <EntityType Name="user_debit_cards">
+          <Key>
+            <PropertyRef Name="card_id" />
+          </Key>
+          <Property Name="card_id" Type="Int32" Nullable="false" />
+          <Property Name="card_number" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="portfolio" Relationship="Self.FK_portfolio_user_debit_cards" FromRole="user_debit_cards" ToRole="portfolio" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created_at" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="portfolio" Relationship="Self.FK_users_portfolio" FromRole="users" ToRole="portfolio" />
+        </EntityType>
+        <Association Name="FK_payments_establishment">
+          <End Role="establishment" Type="Self.establishment" Multiplicity="1" />
+          <End Role="payments" Type="Self.payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="establishment">
+              <PropertyRef Name="est_id" />
+            </Principal>
+            <Dependent Role="payments">
+              <PropertyRef Name="establishment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_payments_portfolio">
+          <End Role="portfolio" Type="Self.portfolio" Multiplicity="1" />
+          <End Role="payments" Type="Self.payments" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="portfolio">
+              <PropertyRef Name="user_portfolio_id" />
+            </Principal>
+            <Dependent Role="payments">
+              <PropertyRef Name="portfolio_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_portfolio_user_debit_cards">
+          <End Role="user_debit_cards" Type="Self.user_debit_cards" Multiplicity="0..1" />
+          <End Role="portfolio" Type="Self.portfolio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_debit_cards">
+              <PropertyRef Name="card_id" />
+            </Principal>
+            <Dependent Role="portfolio">
+              <PropertyRef Name="registered_debit_cards" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_portfolio">
+          <End Role="portfolio" Type="Self.portfolio" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="portfolio">
+              <PropertyRef Name="user_portfolio_id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyPayEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="establishment" EntityType="Self.establishment" />
+          <EntitySet Name="payments" EntityType="Self.payments" />
+          <EntitySet Name="portfolio" EntityType="Self.portfolio" />
+          <EntitySet Name="user_debit_cards" EntityType="Self.user_debit_cards" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="FK_payments_establishment" Association="Self.FK_payments_establishment">
+            <End Role="establishment" EntitySet="establishment" />
+            <End Role="payments" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_payments_portfolio" Association="Self.FK_payments_portfolio">
+            <End Role="portfolio" EntitySet="portfolio" />
+            <End Role="payments" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_portfolio_user_debit_cards" Association="Self.FK_portfolio_user_debit_cards">
+            <End Role="user_debit_cards" EntitySet="user_debit_cards" />
+            <End Role="portfolio" EntitySet="portfolio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_portfolio" Association="Self.FK_users_portfolio">
+            <End Role="portfolio" EntitySet="portfolio" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MyPayModelStoreContainer" CdmEntityContainer="MyPayEntities">
+          <EntitySetMapping Name="establishment">
+            <EntityTypeMapping TypeName="MyPayModel.establishment">
+              <MappingFragment StoreEntitySet="establishment">
+                <ScalarProperty Name="est_id" ColumnName="est_id" />
+                <ScalarProperty Name="est_name" ColumnName="est_name" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="adress" ColumnName="adress" />
+                <ScalarProperty Name="website" ColumnName="website" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payments">
+            <EntityTypeMapping TypeName="MyPayModel.payments">
+              <MappingFragment StoreEntitySet="payments">
+                <ScalarProperty Name="portfolio_id" ColumnName="portfolio_id" />
+                <ScalarProperty Name="establishment_id" ColumnName="establishment_id" />
+                <ScalarProperty Name="establishment_name" ColumnName="establishment_name" />
+                <ScalarProperty Name="customer_number" ColumnName="customer_number" />
+                <ScalarProperty Name="user_balance" ColumnName="user_balance" />
+                <ScalarProperty Name="payment_amount" ColumnName="payment_amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="portfolio">
+            <EntityTypeMapping TypeName="MyPayModel.portfolio">
+              <MappingFragment StoreEntitySet="portfolio">
+                <ScalarProperty Name="user_portfolio_id" ColumnName="user_portfolio_id" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+                <ScalarProperty Name="daily_income" ColumnName="daily_income" />
+                <ScalarProperty Name="daily_expense" ColumnName="daily_expense" />
+                <ScalarProperty Name="non_cash_assest" ColumnName="non_cash_assest" />
+                <ScalarProperty Name="registered_debit_cards" ColumnName="registered_debit_cards" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_debit_cards">
+            <EntityTypeMapping TypeName="MyPayModel.user_debit_cards">
+              <MappingFragment StoreEntitySet="user_debit_cards">
+                <ScalarProperty Name="card_id" ColumnName="card_id" />
+                <ScalarProperty Name="card_number" ColumnName="card_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="MyPayModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

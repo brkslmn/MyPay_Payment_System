@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proje.Web", "Proje.Web\Proj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proje.DataAccess", "Proje.DataAccess\Proje.DataAccess.csproj", "{A76B1FE4-CF9C-40AE-B6DF-EA4CD39ED010}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjeBusiness", "ProjeBusiness\ProjeBusiness.csproj", "{E6BB4BAF-5287-4A02-8143-CE557E794DC6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proje.Business", "ProjeBusiness\Proje.Business.csproj", "{E6BB4BAF-5287-4A02-8143-CE557E794DC6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
