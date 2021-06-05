@@ -30,5 +30,6 @@ namespace Proje.DataAccess
         public virtual DbSet<portfolio> portfolio { get; set; }
         public virtual DbSet<user_debit_cards> user_debit_cards { get; set; }
         public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

@@ -14,6 +14,7 @@
         <AssociationConnector Association="MyPayModel.FK_payments_portfolio" ManuallyRouted="false" />
         <AssociationConnector Association="MyPayModel.FK_portfolio_user_debit_cards" ManuallyRouted="false" />
         <AssociationConnector Association="MyPayModel.FK_users_portfolio" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MyPayModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

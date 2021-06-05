@@ -75,6 +75,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddDebitCards.aspx" />
+    <Content Include="AddEstablishments.aspx" />
+    <Content Include="AddPayment.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -82,9 +85,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Dashboard.aspx" />
-    <Content Include="Default.aspx" />
+    <Content Include="Debit_Cards.aspx" />
     <Content Include="Establishment.aspx" />
+    <Content Include="LoginUser.aspx" />
     <Content Include="Payments.aspx" />
+    <Content Include="Register.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -108,6 +113,7 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Authorized.Master" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -419,7 +425,7 @@
     <Content Include="Temp\public\img\logo-light-mini.png" />
     <Content Include="Temp\public\img\logo-light.png" />
     <Content Include="Temp\public\img\logo-mini.png" />
-    <Content Include="Temp\public\img\logo.png" />
+    <Content Include="Temp\public\img\logo.PNG" />
     <Content Include="Temp\register.html" />
     <Content Include="Temp\resources\graindashboard\gd-icons\gd-icons.css" />
     <Content Include="Temp\resources\graindashboard\gd-icons\gd-icons.svg" />
@@ -437,6 +443,34 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddDebitCards.aspx.cs">
+      <DependentUpon>AddDebitCards.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddDebitCards.aspx.designer.cs">
+      <DependentUpon>AddDebitCards.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddEstablishments.aspx.cs">
+      <DependentUpon>AddEstablishments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddEstablishments.aspx.designer.cs">
+      <DependentUpon>AddEstablishments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AddPayment.aspx.cs">
+      <DependentUpon>AddPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddPayment.aspx.designer.cs">
+      <DependentUpon>AddPayment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Authorized.Master.cs">
+      <DependentUpon>Authorized.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Authorized.Master.designer.cs">
+      <DependentUpon>Authorized.Master</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -444,12 +478,12 @@
     <Compile Include="Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Debit_Cards.aspx.cs">
+      <DependentUpon>Debit_Cards.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="Debit_Cards.aspx.designer.cs">
+      <DependentUpon>Debit_Cards.aspx</DependentUpon>
     </Compile>
     <Compile Include="Establishment.aspx.cs">
       <DependentUpon>Establishment.aspx</DependentUpon>
@@ -457,6 +491,13 @@
     </Compile>
     <Compile Include="Establishment.aspx.designer.cs">
       <DependentUpon>Establishment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginUser.aspx.cs">
+      <DependentUpon>LoginUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginUser.aspx.designer.cs">
+      <DependentUpon>LoginUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
@@ -473,6 +514,13 @@
       <DependentUpon>Payments.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="MasterPage.Master" />
@@ -943,22 +991,21 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Proje.DataAccess\Proje.DataAccess.csproj">
-      <Project>{a76b1fe4-cf9c-40ae-b6df-ea4cd39ed010}</Project>
-      <Name>Proje.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProjeBusiness\Proje.Business.csproj">
-      <Project>{e6bb4baf-5287-4a02-8143-ce557e794dc6}</Project>
-      <Name>Proje.Business</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Proje.Business\Proje.Business.csproj">
+      <Project>{3e00db42-86d0-4e1f-af6e-75a1fca13b96}</Project>
+      <Name>Proje.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Proje.DataAccess\Proje.DataAccess.csproj">
+      <Project>{a76b1fe4-cf9c-40ae-b6df-ea4cd39ed010}</Project>
+      <Name>Proje.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

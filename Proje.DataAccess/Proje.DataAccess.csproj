@@ -76,6 +76,9 @@
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="users.cs">
       <DependentUpon>Context.tt</DependentUpon>
     </Compile>

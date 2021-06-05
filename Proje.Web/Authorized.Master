@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Authorized.master.cs" Inherits="Proje.Web.Authorized" %>
+
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+
+    <!-- Favicon -->
+        <link rel="shortcut icon" href="Temp/grains-master/public/img/favicon.ico"/>
+
+    <!-- Template -->
+        <link rel="stylesheet" href="Temp/grains-master/public/graindashboard/css/graindashboard.css"/>
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1">
+        <div id="Contents" runat="server">
+            <asp:ContentPlaceHolder ID="body" runat="server"></asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="Establishment" runat="server"></asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="Payments" runat="server"></asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="Debit_Cards" runat="server"></asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="Dashboard" runat="server"></asp:ContentPlaceHolder>
+        </div>
+        <div class="alert bg-danger text-white alert-dismissible d-flex align-items-center p-md-4 mb-2 fade show" role="alert">
+            <i class="gd-alert icon-text mr-2"></i>
+            <p class="mb-0">
+            <strong>Yetkisiz Giriş!!</strong>
+        </p>
+        </div>
+    </form>
+
+    <script src="Temp/public/graindashboard/js/graindashboard.js"></script>
+    <script src="Temp/public/graindashboard/js/graindashboard.vendor.js"></script>
+</body>
+</html>

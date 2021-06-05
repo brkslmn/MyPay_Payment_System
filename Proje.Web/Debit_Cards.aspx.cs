@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Proje.Web
 {
-    public partial class Payments : System.Web.UI.Page
+    public partial class Debit_Cards : System.Web.UI.Page
     {
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -31,9 +31,9 @@ namespace Proje.Web
         {
 
         }
-        protected void new_pay_Click(object sender, EventArgs e)
+        protected void newCard_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/AddPayment.aspx");
+            Response.Redirect("~/AddDebitCards.aspx");
         }
     }
 }

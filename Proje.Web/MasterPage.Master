@@ -26,15 +26,15 @@
     <nav class="navbar flex-nowrap p-0">
         <div class="navbar-brand-wrapper d-flex align-items-center col-auto">
             <!-- Logo For Mobile View -->
-            <a class="navbar-brand navbar-brand-mobile" href="/">
-                <img class="img-fluid w-100" src="Temp/grains-master/public/img/logo-mini.png" alt="Graindashboard"/>
+            <a class="navbar-brand navbar-brand-mobile" href="/Dashboard.aspx">
+                <img class="img-fluid w-100" src="Temp/public/img/logo.png" alt="Graindashboard"/>
             </a>
             <!-- End Logo For Mobile View -->
 
             <!-- Logo For Desktop View -->
-            <a class="navbar-brand navbar-brand-desktop" href="/">
-                <img class="side-nav-show-on-closed" src="Temp/grains-master/public/img/logo-mini.png" alt="Graindashboard" style="width: auto; height: 33px;"/>
-                <img class="side-nav-hide-on-closed" src="Temp/grains-master/public/img/logo.png" alt="Graindashboard" style="width: auto; height: 33px;"/>
+            <a class="navbar-brand navbar-brand-desktop" href="/Dashboard.aspx">
+                <img class="side-nav-show-on-closed" src="Temp/public/img/logo.png" alt="Graindashboard" style="width: auto; height: 33px;"/>
+                <img class="side-nav-hide-on-closed" src="Temp/public/img/logo.png" alt="Graindashboard" style="width: auto; height: 33px;"/>
             </a>
             <!-- End Logo For Desktop View -->
         </div>
@@ -139,8 +139,8 @@
             <!-- End Title -->
 
             <!-- Dashboard -->
-            <li class="side-nav-menu-item active">
-                <a class="side-nav-menu-link media align-items-center" href="/">
+            <li class="side-nav-menu-item">
+                <a class="side-nav-menu-link media align-items-center" href="Dashboard.aspx">
               <span class="side-nav-menu-icon d-flex mr-3">
                 <i class="gd-dashboard"></i>
               </span>
@@ -151,25 +151,33 @@
 
             <!-- Documentation -->
             <li class="side-nav-menu-item">
-                <a class="side-nav-menu-link media align-items-center" href="Payments/" target="_blank">
+                <a class="side-nav-menu-link media align-items-center" href="Payments.aspx" target="_blank">
               <span class="side-nav-menu-icon d-flex mr-3">
-                <i class="gd-money icon-text d-inline-block text-dark mt-2 mb-3"></i>
+                <i class="gd-money icon-text d-inline-block text-primary"></i>
               </span>
                     <span class="side-nav-fadeout-on-closed media-body">Payments</span>
                 </a>
             </li>
             <li class="side-nav-menu-item">
-                <a class="side-nav-menu-link media align-items-center" href="Establishment/" target="_blank">
+                <a class="side-nav-menu-link media align-items-center" href="Establishment.aspx" target="_blank">
               <span class="side-nav-menu-icon d-flex mr-3">
                 <i class="gd-bag icon-text d-inline-block text-primary"></i>
               </span>
                     <span class="side-nav-fadeout-on-closed media-body">Establishment</span>
                 </a>
             </li>
+            <li class="side-nav-menu-item">
+                <a class="side-nav-menu-link media align-items-center" href="Debit_Cards.aspx" target="_blank">
+              <span class="side-nav-menu-icon d-flex mr-3">
+                <i class="gd-credit-card icon-text d-inline-block text-primary"></i>
+              </span>
+                    <span class="side-nav-fadeout-on-closed media-body">Debit Cards</span>
+                </a>
+            </li>
             <!-- End Documentation -->
 
             <!-- Title -->
-            <li class="sidebar-heading h6">Examples</li>
+            <li class="sidebar-heading h6">User Management</li>
             <!-- End Title -->
 
             <!-- Users -->
@@ -200,40 +208,9 @@
             <!-- End Users -->
 
             <!-- Authentication -->
-            <li class="side-nav-menu-item side-nav-has-menu">
-                <a class="side-nav-menu-link media align-items-center" href="#"
-                   data-target="#subPages">
-              <span class="side-nav-menu-icon d-flex mr-3">
-                <i class="gd-lock"></i>
-              </span>
-                    <span class="side-nav-fadeout-on-closed media-body">Authentication</span>
-                    <span class="side-nav-control-icon d-flex">
-                <i class="gd-angle-right side-nav-fadeout-on-closed"></i>
-              </span>
-                    <span class="side-nav__indicator side-nav-fadeout-on-closed"></span>
-                </a>
-
-                <!-- Pages: subPages -->
-                <ul id="subPages" class="side-nav-menu side-nav-menu-second-level mb-0">
-                    <li class="side-nav-menu-item">
-                        <a class="side-nav-menu-link" href="login.html">Login</a>
-                    </li>
-                    <li class="side-nav-menu-item">
-                        <a class="side-nav-menu-link" href="register.html">Register</a>
-                    </li>
-                    <li class="side-nav-menu-item">
-                        <a class="side-nav-menu-link" href="password-reset.html">Forgot Password</a>
-                    </li>
-                    <li class="side-nav-menu-item">
-                        <a class="side-nav-menu-link" href="password-reset-2.html">Forgot Password 2</a>
-                    </li>
-                    <li class="side-nav-menu-item">
-                        <a class="side-nav-menu-link" href="email-verification.html">Email Verification</a>
-                    </li>
-                </ul>
+           
                 <!-- End Pages: subPages -->
-            </li>
-            <!-- End Authentication -->
+           <!-- End Authentication -->
 
             <!-- Settings -->
             <li class="side-nav-menu-item">
@@ -246,16 +223,7 @@
             </li>
             <!-- End Settings -->
 
-            <!-- Static -->
-            <li class="side-nav-menu-item">
-                <a class="side-nav-menu-link media align-items-center" href="static-non-auth.html">
-              <span class="side-nav-menu-icon d-flex mr-3">
-                <i class="gd-file"></i>
-              </span>
-                    <span class="side-nav-fadeout-on-closed media-body">Static page</span>
-                </a>
-            </li>
-            <!-- End Static -->
+           
 
         </ul>
     </aside>
@@ -273,6 +241,10 @@
 
             <div>
                 <asp:ContentPlaceHolder ID="Dashboard" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div>
+                <asp:ContentPlaceHolder ID="Debit_Cards" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
             <div class="row">
