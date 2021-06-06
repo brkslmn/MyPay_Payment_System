@@ -36,13 +36,21 @@
 								<form>
 			
 									<div class="form-group">
-										<label for="name">Name</label>
-										<input type="text" class="form-control" id="name" name="name" required="" autofocus="">
+										<label for="name">First Name</label>
+										<input type="text" class="form-control" id="firstname" name="name" required="" autofocus="">
+									</div>
+									<div class="form-group">
+										<label for="name">Last Name</label>
+										<input type="text" class="form-control" id="lastname" name="name" required="" autofocus="">
 									</div>
 
 									<div class="form-group">
 										<label for="email">E-Mail Address</label>
 										<input id="email" type="email" class="form-control" name="email" required="">
+									</div>
+									<div class="form-group">
+										<label for="name">Phone Number</label>
+										<input type="text" class="form-control" id="phone_number" name="name" required="" autofocus="">
 									</div>
 
 									<div class="form-row">

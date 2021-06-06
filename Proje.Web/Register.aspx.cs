@@ -13,5 +13,17 @@ namespace Proje.Web
         {
 
         }
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+
+            var bsn = new Business.ControlUser();
+            bsn.UserRegister(firstname.Value, lastname.Value, email.Value, password.Value, phone_number.Value);
+
+            if (Page.IsValid)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
+
+        }
     }
 }

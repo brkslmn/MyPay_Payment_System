@@ -25,7 +25,7 @@ namespace Proje.Business
 
                 catch
                 {
-                    return 00404;
+                    return 0;
                 }
             }
         }
